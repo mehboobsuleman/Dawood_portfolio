@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            background: #000;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            background: #1c1c1c;
+            border-bottom: 2px solid #1abc9c;
+            position: relative;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 2rem;
+            color: #1abc9c;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: #ccc;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        nav a.active,
+        nav a:hover {
+            color: #1abc9c;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            background: #ccc;
+            height: 3px;
+            width: 25px;
+            margin: 3px 0;
+            border-radius: 3px;
+            transition: background 0.3s;
+        }
+
+        /* Home Section */
+        .home {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 80px 10%;
+            background: #1c1c1c;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .home-content {
+            max-width: 50%;
+            text-align: center;
+        }
+
+        .home-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #1abc9c;
+        }
+
+        .home-content h3 {
+            font-size: 1.5rem;
+            color: #ccc;
+        }
+
+        .home-content p {
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+
+        .home-img img {
+            max-width: 100%;
+            border-radius: 50%;
+            box-shadow: 0 0 20px #1abc9c;
+        }
+
+        .social-icons a {
+            color: #1abc9c;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            color: #006eff;
+        }
+
+        /* About Section */
+        .about {
+            padding: 60px 10%;
+            background-color: #161616;
+            text-align: center;
+        }
+
+        .about h2 {
+            color: #1abc9c;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .about p {
+            font-size: 1.2rem;
+            color: #ccc;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 60px 10%;
+            background-color: #1c1c1c;
+        }
+
+        .services h2 {
+            text-align: center;
+            color: #1abc9c;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .services-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .service {
+            background: #161616;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px #1abc9c;
+            flex: 1;
+            min-width: 280px;
+            max-width: 300px;
+        }
+
+        .service h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #1abc9c;
+        }
+
+        .service p {
+            font-size: 1rem;
+            color: #ccc;
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 60px 10%;
+            background-color: #1c1c1c;
+        }
+
+        .skills h2 {
+            text-align: center;
+            color: #1abc9c;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .skill {
+            background: #161616;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px #1abc9c;
+            flex: 1;
+            min-width: 280px;
+            max-width: 300px;
+        }
+
+        .skill h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #1abc9c;
+        }
+
+        .skill p {
+            font-size: 1rem;
+            color: #ccc;
+        }
+
+        .see-projects,
+        .see-resume {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .see-projects .btn,
+        .see-resume .btn {
+            background: #1abc9c;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .see-projects .btn:hover,
+        .see-resume .btn:hover {
+            background: #006eff;
+        }
+
+        /* Education Section */
+        .education {
+            padding: 60px 10%;
+            background-color: #161616;
+        }
+
+        .education h2 {
+            text-align: center;
+            color: #1abc9c;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .education-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .education-item {
+            background: #1c1c1c;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px #1abc9c;
+            flex: 1;
+            min-width: 280px;
+            max-width: 300px;
+        }
+
+        .education-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #1abc9c;
+        }
+
+        .education-item p {
+            font-size: 1rem;
+            color: #ccc;
+        }
+
+        /* Experience Section */
+        .experience {
+            padding: 60px 10%;
+            background-color: #1c1c1c;
+        }
+
+        .experience h2 {
+            text-align: center;
+            color: #1abc9c;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .experience-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .experience-item {
+            background: #161616;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px #1abc9c;
+            flex: 1;
+            min-width: 280px;
+            max-width: 300px;
+        }
+
+        .experience-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #1abc9c;
+        }
+
+        .experience-item p {
+            font-size: 1rem;
+            color: #ccc;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 60px 10%;
+            background-color: #161616;
+        }
+
+        .contact h2 {
+            text-align: center;
+            color: #1abc9c;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background: #1c1c1c;
+            color: #fff;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background: #1abc9c;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .contact-form button:hover {
+            background: #006eff;
+        }
+
+        /* Resume Section */
+        .resume {
+            padding: 60px 10%;
+            background-color: #1c1c1c;
+        }
+
+        .resume h2 {
+            text-align: center;
+            color: #1abc9c;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .resume-content {
+            text-align: center;
+        }
+
+        .resume-content p {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        .resume-content .btn {
+            background: #1abc9c;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .resume-content .btn:hover {
+            background: #006eff;
+        }
+        /* Footer */
+footer {
+    padding: 20px 10%;
+    background: #1c1c1c; /* Dark background matching your theme */
+    color: #ccc; /* Light text color for contrast */
+    text-align: center;
+    border-top: 2px solid #1abc9c; /* Accent color for top border */
+}
+
+footer p {
+    margin: 10px 0;
+    font-size: 1rem;
+}
+
+footer a {
+    color: #1abc9c; /* Accent color for links */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s; /* Smooth color transition on hover */
+}
+
+footer a:hover {
+    color: #006eff; /* Hover color for links */
+}
+
+/* Mobile Menu */
+@media (max-width: 768px) {
+    header {
+        padding: 20px 5%;
+        position: relative; /* Ensure positioning for mobile menu */
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    nav {
+        display: none; /* Hide nav by default */
+        flex-direction: column;
+        position: absolute;
+        top: 70px; /* Adjust based on header height */
+        right: 5%;
+        background: #1c1c1c;
+        width: 90%;
+        border-radius: 5px;
+        box-shadow: 0 0 10px #1abc9c;
+        z-index: 10; /* Ensure it appears above other content */
+    }
+
+    nav.active {
+        display: flex; /* Show nav when active */
+    }
+
+    nav a {
+        margin: 15px 0;
+        font-size: 1.2rem;
+        text-align: center;
+        color: #ccc; /* Ensure link color matches theme */
+    }
+
+    nav a.active,
+    nav a:hover {
+        color: #1abc9c;
+    }
+
+    .home {
+        padding: 40px 5%;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .home-content {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .home-img {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .home-content h1 {
+        font-size: 2rem;
+    }
+
+    .home-content h3 {
+        font-size: 1.2rem;
+    }
+
+    .home-content p {
+        font-size: 1rem;
+    }
+
+    .service, .skill, .education-item, .experience-item {
+        padding: 15px;
+        box-shadow: 0 0 5px #1abc9c;
+    }
+
+    .service h3, .skill h3, .education-item h3, .experience-item h3 {
+        font-size: 1.2rem;
+    }
+
+    .service p, .skill p, .education-item p, .experience-item p {
+        font-size: 0.9rem;
+    }
+}
+
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            header {
+                padding: 20px 5%;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px; /* Adjust based on header height */
+                right: 10%;
+                background: #1c1c1c;
+                width: 80%;
+                border-radius: 5px;
+                box-shadow: 0 0 10px #1abc9c;
+                z-index: 10; /* Ensure it appears above other content */
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav a {
+                margin: 15px 0;
+                font-size: 1.2rem;
+                text-align: center;
+            }
+
+            .home {
+                padding: 40px 5%;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .home-content {
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .home-img {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .home-content h1 {
+                font-size: 2rem;
+            }
+
+            .home-content h3 {
+                font-size: 1.2rem;
+            }
+
+            .home-content p {
+                font-size: 1rem;
+            }
+
+            .service, .skill, .education-item, .experience-item {
+                padding: 15px;
+                box-shadow: 0 0 5px #1abc9c;
+            }
+
+            .service h3, .skill h3, .education-item h3, .experience-item h3 {
+                font-size: 1.2rem;
+            }
+
+            .service p, .skill p, .education-item p, .experience-item p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    <title>Muhammad Dawood - Portfolio</title>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">Muhammad Dawood</div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="main-menu">
+            <a href="index.html">Home</a>
+            <a href="#about">About Me</a>
+            <a href="#services">Services</a>
+            <a href="#skills">Skills</a>
+            <a href="index1.html">Projects</a>
+            <a href="#education">Education</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+            <a href="#resume">Resume</a>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="home">
+        <div class="home-content">
+            <h1>Hello, I'm Muhammad Dawood</h1>
+            <h3>Data Scientist & Web Developer</h3>
+            <p>Welcome to my portfolio! Here you can find my projects, skills, and more.</p>
+        </div>
+        <div class="home-img">
+            <img src="image.png" alt="Muhammad Dawood">
+        </div>
+    </section>
+    <section id="resume" class="resume">
+        <h2>Resume</h2>
+        <div class="resume-content">
+            <p>Click the button below to see my resume.</p>
+            <a href="re.png" class="btn">See Resume</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2>About Me</h2>
+        <p>I am a Data Scientist and Web Developer with experience in various technologies. I enjoy working on challenging problems and creating innovative solutions.</p>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <h2>Services</h2>
+        <div class="services-container">
+            <div class="service">
+                <h3>Data Analysis</h3>
+                <p>Analyzing data to provide actionable insights and drive decision-making.</p>
+            </div>
+            <div class="service">
+                <h3>Web Development</h3>
+                <p>Building responsive and user-friendly websites with modern technologies.</p>
+            </div>
+            <div class="service">
+                <h3>Machine Learning</h3>
+                <p>Developing and deploying machine learning models to solve real-world problems.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <h2>Skills</h2>
+        <div class="skills-container">
+            <div class="skill">
+                <h3>Python</h3>
+                <p>Proficient in Python programming for data analysis, web development, and machine learning.</p>
+            </div>
+            <div class="skill">
+                <h3>Data Analysis</h3>
+                <p>Experienced in data cleaning, visualization, and statistical analysis.</p>
+            </div>
+            <div class="skill">
+                <h3>Web Development</h3>
+                <p>Skilled in web development and responsive web design.</p>
+            </div>
+        </div>
+        <div class="see-projects">
+            <a href="index1.html" class="btn">Click to See My Projects</a>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="education">
+        <h2>Education</h2>
+        <div class="education-content">
+            <div class="education-item">
+                <h3>Data-Science</h3>
+                <p>Saylani Mass IT Training - 2023</p>
+            </div>
+            <div class="education-item">
+                <h3>Online Data Science Courses</h3>
+                <p>Coursera - 2023</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <h2>Experience</h2>
+        <div class="experience-content">
+            <div class="experience-item">
+                <h3>Remote Job</h3>
+                <p>Fiverr - 2024 - Present</p>
+            </div>
+            <div class="experience-item">
+                <h3>Remote Job</h3>
+                <p>Upwork - 2024 - Present</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>Contact</h2>
+        <form class="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Muhammad Dawood. All rights reserved.</p>
+        <p>Connect with me on <a href="https://github.com/muhammadmoria">GitHub</a>, <a href="https://www.linkedin.com/in/muhammad-moria-361510306/">LinkedIn</a>, <a href="https://www.facebook.com/profile.php?id=100072948205088">Facebook</a>, <a href="https://www.kaggle.com/muhammaddawood42">Kaggle</a>, <a href="https://x.com/muhammad_d83889">X</a>.</p>
+    </footer>
+
+    <!-- JavaScript for Menu Toggle -->
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById('main-menu');
+            menu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
